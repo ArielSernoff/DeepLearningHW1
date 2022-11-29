@@ -50,7 +50,7 @@ class LinearClassifier(object):
         y_pred, class_scores = None, None
         # ====== YOUR CODE: ======
         class_scores = torch.matmul(x, self.weights)
-        y_pred = torch.argmin(torch.abs(class_scores), dim=1)
+        y_pred = torch.argmax(torch.abs(class_scores), dim=1)
 
         # TODO: -check if predictions should be based off absolute value of scores or not
         #       -
@@ -76,6 +76,8 @@ class LinearClassifier(object):
 
         acc = None
         # ====== YOUR CODE: ======
+
+        # TODO: -remove prints
         acc = (torch.sum(y == y_pred))/(y.shape[0])
 
         # raise NotImplementedError()

@@ -52,7 +52,24 @@ class SVMHingeLoss(ClassifierLoss):
 
         loss = None
         # ====== YOUR CODE: ======
-        raise NotImplementedError()
+        delta = 1
+        m = x_scores
+        correct_class_scores = torch.empty(x_scores.shape())
+
+
+        # TODO: remove explicit loop, maybe construct a matrix of size n,c of the correct score then subtract from xscores and add delta
+
+
+
+        loss = torch.sum(m)
+        return loss
+
+        # delta = 1 for now says to pick randomly
+
+
+
+
+        # raise NotImplementedError()
         # ========================
 
         # TODO: Save what you need for gradient calculation in self.grad_ctx
