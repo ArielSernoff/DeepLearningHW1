@@ -52,22 +52,22 @@ class SVMHingeLoss(ClassifierLoss):
 
         loss = None
         # ====== YOUR CODE: ======
+
+        # TODO: remove explicit loop, maybe construct a matrix of size n,c of the correct score then subtract from
+        #       x_scores and add delta
+        # delta = 1 for now says to pick randomly
         delta = 1
         m = x_scores
-        correct_class_scores = torch.empty(x_scores.shape())
-
-
-        # TODO: remove explicit loop, maybe construct a matrix of size n,c of the correct score then subtract from xscores and add delta
-
-
-
+        # explicit loop!!
+        # for i in x_scores.shape[0]:
+        #     for j in x_scores.shape[1]:
+        for i, j in x_scores:
+            if j == y[i]:
+                m[i, j] = 0
+            else:
+                m[i, j] = m[i, j] - m[i, y[i]] + delta
         loss = torch.sum(m)
         return loss
-
-        # delta = 1 for now says to pick randomly
-
-
-
 
         # raise NotImplementedError()
         # ========================
